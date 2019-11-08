@@ -6,9 +6,8 @@ insert into manufacturer values ('1','apple','12');
 insert into product values ('12','mac','ele',1000);
 insert into store values ('chicago', 'W','12', 30);
 insert into customer values ('10', 'credit');
-
+hahahahah
 */
-
 create table product (product_ID varchar(10) primary key, product_name varchar(20), category varchar(15) , price numeric(8,2));
 create table manufacturer (manufacturer_ID varchar(10) primary key, manufacturer_name varchar(20), product_ID varchar(10), foreign key (product_ID) references product  );
 create table store (store_ID varchar(10) primary key, region char(1) , product_ID varchar(10), quantity  numeric(4,0) ,foreign key (product_ID) references product,check (region in('N','E','W','S')));
