@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminActivity">
+
+    <Button
+        android:id="@+id/productButton_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="79dp"
+        android:text="Product List"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/orderButton_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
+        android:text="Order"
+        app:layout_constraintEnd_toEndOf="@+id/productButton_admin"
+        app:layout_constraintStart_toStartOf="@+id/productButton_admin"
+        app:layout_constraintTop_toBottomOf="@+id/productButton_admin" />
+
+    <Button
+        android:id="@+id/userButton_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="51dp"
+        android:text="User List"
+        app:layout_constraintEnd_toEndOf="@+id/orderButton_admin"
+        app:layout_constraintStart_toStartOf="@+id/orderButton_admin"
+        app:layout_constraintTop_toBottomOf="@+id/orderButton_admin" />
+
+    <Button
+        android:id="@+id/shipperButton_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:text="Shipper"
+        app:layout_constraintEnd_toEndOf="@+id/userButton_admin"
+        app:layout_constraintStart_toStartOf="@+id/userButton_admin"
+        app:layout_constraintTop_toBottomOf="@+id/userButton_admin" />
+
+    <Button
+        android:id="@+id/dataButton_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Sales Data"
+        app:layout_constraintEnd_toEndOf="@+id/shipperButton_admin"
+        app:layout_constraintStart_toStartOf="@+id/shipperButton_admin"
+        app:layout_constraintTop_toBottomOf="@+id/shipperButton_admin" />
+
+    <Button
+        android:id="@+id/manufactureButton_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="manufacturer"
+        app:layout_constraintEnd_toEndOf="@+id/dataButton_admin"
+        app:layout_constraintStart_toStartOf="@+id/dataButton_admin"
+        app:layout_constraintTop_toBottomOf="@+id/dataButton_admin" />
+</androidx.constraintlayout.widget.ConstraintLayout>
