@@ -12,6 +12,7 @@ public class Database  extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "BestBuy";
     private static final String TABLE_NAME = "StockWatchTable";
+    //attributes
     private static final String SYMBOL = "StockSymbol";
     private static final String COMPANY = "CompanyName";
 
@@ -64,4 +65,19 @@ public class Database  extends SQLiteOpenHelper {
         }
         return stocks;
     }
+
+    /**
+     * F: all query
+     * F1: addNewOrderToDatabase(productName,quantity,price);
+     * F2: updateProductToDatabase(quantity);
+     * F3: addNewDataToDatabase(productName,quantity,price,region,season);
+     * F4: createUserIntoDatabase(String userName, String password, String cardNumber)
+     * F5: editUserToDatabase(String username ,String password, String cardNumber)
+     * F5: searchUsersOrder(String username)
+     *
+     * */
+
+    /**
+     * Insert default data to every table
+     * */
 }

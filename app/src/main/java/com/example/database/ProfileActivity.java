@@ -84,7 +84,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void goProduct(View view) {
         Intent intent = new Intent(this, ProductListActivity.class);
-        intent.putExtra("isUser", isUser);
+        intent.putExtra("username", username);
         startActivity(intent);
     }
 }
