@@ -12,7 +12,7 @@ import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderHolder> {
 
-    private static final String TAG = "StocksAdapter";
+    private static final String TAG = "OrderAdapter";
     private List<Order> orderList;
     private OrderListActivity orderAct;
     private ProfileActivity proActivity;

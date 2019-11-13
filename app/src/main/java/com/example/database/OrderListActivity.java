@@ -22,7 +22,7 @@ public class OrderListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_list);
-        recyclerView = findViewById(R.id.recyclerView_order);
+        recyclerView = findViewById(R.id.recycler_orderList);
 
         mAdapter = new OrderAdapter(orderList, this);
 
