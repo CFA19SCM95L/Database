@@ -4,31 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".OrderListActivity">
 
-    <Button
-        android:id="@+id/login_user"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="8dp"
-        android:onClick="goUser"
-        android:text="User"
+        android:layout_marginTop="8dp"
+        android:text="Order List"
+        android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/login_admin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:onClick="goAdmin"
-        android:text="Admin"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_user" />
+        app:layout_constraintTop_toBottomOf="@+id/textView36" />
 </androidx.constraintlayout.widget.ConstraintLayout>
