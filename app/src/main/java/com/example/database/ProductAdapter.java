@@ -28,8 +28,7 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductHolder> {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_product, parent, false);
 
-//        itemView.setOnClickListener(productAct);
-//        itemView.setOnLongClickListener(productAct);
+        itemView.setOnClickListener(productAct);
 
         return new ProductHolder(itemView);
     }
