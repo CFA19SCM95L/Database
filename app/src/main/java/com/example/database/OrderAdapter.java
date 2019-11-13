@@ -15,10 +15,16 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderHolder> {
     private static final String TAG = "StocksAdapter";
     private List<Order> orderList;
     private OrderListActivity orderAct;
+    private ProfileActivity proActivity;
 
     OrderAdapter(List<Order> orderList, OrderListActivity ma) {
         this.orderList = orderList;
         orderAct = ma;
+    }
+
+    OrderAdapter(List<Order> orderList, ProfileActivity ma) {
+        this.orderList = orderList;
+        proActivity = ma;
     }
 
     @NonNull

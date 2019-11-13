@@ -1,14 +1,47 @@
 package com.example.database;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserlistActivity extends AppCompatActivity {
+
+    private final List<User> userList = new ArrayList<>();  // Main content is here
+
+    private RecyclerView recyclerView; // Layout's recyclerview
+
+    private UserAdapter mAdapter; // Data to recyclerview adapter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userlist);
+
+
+        recyclerView = findViewById(R.id.recycler_userlist);
+
+        mAdapter = new UserAdapter(userList, this);
+
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                new LinearLayoutManager(this).getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
+        //Make some data
+
+        mAdapter.notifyDataSetChanged();
+        //
+
+
     }
+
 }
