@@ -36,8 +36,8 @@ public class Database  extends SQLiteOpenHelper {
 
     public void addStock(Product product){
         ContentValues values = new ContentValues();
-        values.put(SYMBOL, product.getProduct_ID());
-        values.put(COMPANY, product.getProduct_name());
+        values.put(SYMBOL, product.getProductID());
+        values.put(COMPANY, product.getProductName());
         values.put(SYMBOL, product.getCategory());
         values.put(COMPANY, product.getPrice());
 

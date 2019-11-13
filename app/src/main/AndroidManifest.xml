@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".OrderListActivity"></activity>
-        <activity android:name=".Manufacturer" />
+        <activity android:name=".ManufacturerActivity" />
         <activity android:name=".DataActivity" />
         <activity android:name=".ShipperActivity" />
         <activity android:name=".UserlistActivity" />

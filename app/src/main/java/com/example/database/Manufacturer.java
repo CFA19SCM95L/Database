@@ -1,14 +1,34 @@
 package com.example.database;
 
-import androidx.appcompat.app.AppCompatActivity;
+import java.io.Serializable;
 
-import android.os.Bundle;
+public class Manufacturer implements Serializable {
 
-public class Manufacturer extends AppCompatActivity {
+    private String manufacturerID;
+    private String companyName;
+    private String product;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manufacturer);
+    public String getManufacturerID() {
+        return manufacturerID;
+    }
+
+    public void setManufacturerID(String manufacturerID) {
+        this.manufacturerID = manufacturerID;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
     }
 }

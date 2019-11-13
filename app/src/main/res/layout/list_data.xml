@@ -53,9 +53,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Sales Amount:"
-        app:layout_constraintBottom_toBottomOf="@+id/textView28"
-        app:layout_constraintStart_toEndOf="@+id/textView28"
-        app:layout_constraintTop_toTopOf="@+id/productID_salesList" />
+        app:layout_constraintBottom_toBottomOf="@+id/quantity_dataList"
+        app:layout_constraintStart_toEndOf="@+id/quantity_dataList"
+        app:layout_constraintTop_toTopOf="@+id/productID_dataList" />
 
     <TextView
         android:id="@+id/region_dataList"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView16" />
 
     <TextView
-        android:id="@+id/productID_salesList"
+        android:id="@+id/productID_dataList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -88,7 +88,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView22" />
 
     <TextView
-        android:id="@+id/textView28"
+        android:id="@+id/quantity_dataList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -98,7 +98,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView23" />
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/salesAmount_dataList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

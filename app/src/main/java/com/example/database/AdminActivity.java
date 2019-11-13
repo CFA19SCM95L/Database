@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.ProxyFileDescriptorCallback;
 import android.view.View;
 
 public class AdminActivity extends AppCompatActivity {
@@ -42,7 +41,7 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void goManufacturerList(View view) {
-        Intent intent = new Intent(this, Manufacturer.class);
+        Intent intent = new Intent(this, ManufacturerActivity.class);
 //        intent.putExtra("key", "value");
         startActivity(intent);
     }
