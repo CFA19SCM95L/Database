@@ -7,19 +7,18 @@
     tools:context=".SignupActivity">
 
     <Button
-        android:id="@+id/modifyUser_edit"
+        android:id="@+id/create_signup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="36dp"
         android:onClick="goProfile"
         android:text="create"
-        app:layout_constraintEnd_toEndOf="@+id/cardNumber_edit"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/cardNumber_edit"
-        app:layout_constraintTop_toBottomOf="@+id/cardNumber_edit" />
+        app:layout_constraintEnd_toEndOf="@+id/cardNumber_signup"
+        app:layout_constraintStart_toStartOf="@+id/cardNumber_signup"
+        app:layout_constraintTop_toBottomOf="@+id/cardNumber_signup" />
 
     <EditText
-        android:id="@+id/username_edit"
+        android:id="@+id/username_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -33,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/password_edit"
+        android:id="@+id/password_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -41,22 +40,20 @@
         android:ems="10"
         android:hint="password"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/username_edit"
+        app:layout_constraintEnd_toEndOf="@+id/username_signup"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/username_edit"
-        app:layout_constraintTop_toBottomOf="@+id/username_edit" />
+        app:layout_constraintStart_toStartOf="@+id/username_signup"
+        app:layout_constraintTop_toBottomOf="@+id/username_signup" />
 
     <EditText
-        android:id="@+id/cardNumber_edit"
+        android:id="@+id/cardNumber_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="83dp"
         android:ems="10"
         android:hint="Card Number"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/password_edit"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/password_edit"
-        app:layout_constraintTop_toBottomOf="@+id/password_edit" />
+        app:layout_constraintEnd_toEndOf="@+id/password_signup"
+        app:layout_constraintStart_toStartOf="@+id/password_signup"
+        app:layout_constraintTop_toBottomOf="@+id/password_signup" />
 </androidx.constraintlayout.widget.ConstraintLayout>

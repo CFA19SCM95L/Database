@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListActivity extends AppCompatActivity implements View.OnClickListener {
+    /**
+     * Three table: product, order, salesData
+     * */
 
     private final List<Product> productList = new ArrayList<>();
 
@@ -26,6 +29,12 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
+
+
+        if (getIntent().hasExtra("isUser")) {
+
+            isUser = true;
+        }
 
         recyclerView = findViewById(R.id.recyclerView_productList);
 
@@ -54,12 +63,20 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         Product m = productList.get(pos);
 
 
-
-//        if(isUser) {
-//            Toast.makeText(v.getContext(), "User " + m.toString(), Toast.LENGTH_SHORT).show();
-//        }
-        Toast.makeText(v.getContext(), "User " + m.toString(), Toast.LENGTH_SHORT).show();
-
+        if(isUser) {
+            /**
+             * 1. pop dialog ask user how many they want
+             * 2. show price
+             * 3. ask them ok
+             * 4. add new order for user
+             * 5. update product quantity
+             * 6. add one data to sales data
+             * 6. go back to profile activity and show their orders
+             * */
+        }
 
     }
+
+
+
 }
