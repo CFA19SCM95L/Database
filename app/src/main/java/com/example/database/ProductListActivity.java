@@ -97,6 +97,12 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                 public void onClick(DialogInterface dialog, int id) {
                     String productName = m.getProductName();
                     int quantity =Integer.parseInt(et.getText().toString());
+                    /* quantity > sale online table  return pop dialog ask for */
+                    /** take data from containOnline from database */
+//                    if (quantity < ) {
+//
+//                    }
+                    /***/
                     double price = m.getPrice() * quantity;
                     String region = "online";
                     String season = "Winter";

@@ -15,6 +15,7 @@ public class Database  extends SQLiteOpenHelper {
     //attributes
     private static final String SYMBOL = "StockSymbol";
     private static final String COMPANY = "CompanyName";
+    //
 
     private static final String SQL_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ( " + SYMBOL + " TEXT not null unique, " + COMPANY +" TEXT not null)";
     private SQLiteDatabase database;
@@ -74,6 +75,7 @@ public class Database  extends SQLiteOpenHelper {
      * F4: createUserIntoDatabase(String userName, String password, String cardNumber)
      * F5: editUserToDatabase(String username ,String password, String cardNumber)
      * F5: searchUsersOrder(String username)
+     * F6: takeDataFromContainOnline(String productID, String warehouseID)
      *
      * */
 
