@@ -9,6 +9,13 @@ public class User implements Serializable {
     private String cardNumber;
     private String password;
 
+    public User(String userID, String accountNumber, String cardNumber, String password) {
+        this.userID = userID;
+        this.accountNumber = accountNumber;
+        this.cardNumber = cardNumber;
+        this.password = password;
+    }
+
     public String getUserID() {
         return userID;
     }

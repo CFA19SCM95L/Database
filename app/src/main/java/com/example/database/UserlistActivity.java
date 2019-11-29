@@ -12,6 +12,7 @@ import java.util.List;
 
 public class UserlistActivity extends AppCompatActivity {
 
+
     private final List<User> userList = new ArrayList<>();  // Main content is here
 
     private RecyclerView recyclerView; // Layout's recyclerview
@@ -22,6 +23,12 @@ public class UserlistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userlist);
+
+
+
+        Database databaseHandler  = new Database(this);
+        ArrayList<String[]> users = databaseHandler.loadUser();
+
 
 
         recyclerView = findViewById(R.id.recycler_userlist);
@@ -36,10 +43,12 @@ public class UserlistActivity extends AppCompatActivity {
                 new LinearLayoutManager(this).getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        //Make some data
-        for (int i = 0; i < 20; i++) {
-            userList.add(new User());
+
+        for (String[] user : users) {
+            userList.add(new User(user[0], user[1], user[3], user[2]));
         }
+
+
         mAdapter.notifyDataSetChanged();
         //
 

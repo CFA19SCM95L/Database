@@ -4,34 +4,23 @@ import java.io.Serializable;
 
 public class Data implements Serializable {
 
-    private String region;
-    private String season;
-    private String productID;
+
+    private String productName;
     private int quantity;
     private double salesAmount;
 
-    public String getRegion() {
-        return region;
+    public Data(String productName, int quantity, double salesAmount) {
+        this.productName = productName;
+        this.quantity = quantity;
+        this.salesAmount = salesAmount;
     }
 
-    public void setRegion(String region) {
-        this.region = region;
+    public String getProductName() {
+        return productName;
     }
 
-    public String getSeason() {
-        return season;
-    }
-
-    public void setSeason(String season) {
-        this.season = season;
-    }
-
-    public String getProductID() {
-        return productID;
-    }
-
-    public void setProductID(String productID) {
-        this.productID = productID;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public int getQuantity() {

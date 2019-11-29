@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -16,6 +17,7 @@ public class EditActivity extends AppCompatActivity {
     public String username;
     public String password;
     public String cardNumber;
+    public String memberID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,9 @@ public class EditActivity extends AppCompatActivity {
         passwordEdit = findViewById(R.id.password_edit);
         cardNumberEdit = findViewById(R.id.cardNumber_edit);
 
-        if (getIntent().hasExtra("userName")) {
-            username = getIntent().getStringExtra("userName");
+        if (getIntent().hasExtra("memberID")) {
+            memberID = getIntent().getStringExtra("memberID");
+            username = getIntent().getStringExtra("username");
             userName.setText(username);
         }
 
@@ -36,16 +39,22 @@ public class EditActivity extends AppCompatActivity {
     public void goProfile(View view) {
         password = passwordEdit.getText().toString();
         cardNumber = cardNumberEdit.getText().toString();
-        editUserToDatabase(username,password,cardNumber);
-        Intent intent = new Intent(this, ProfileActivity.class);
-        intent.putExtra("username", username);
-        intent.putExtra("cardNumber", cardNumber);
-
-        startActivity(intent);
+        if (cardNumber.length() == 16 && password.length() > 0) {
+            editUserToDatabase(memberID, username, password, cardNumber);
+            Intent intent = new Intent(this, ProfileActivity.class);
+            intent.putExtra("username", username);
+            intent.putExtra("cardNumber", cardNumber);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Wrong Input : Card number need to be 16 digits", Toast.LENGTH_SHORT).show();
+        }
     }
-    public void editUserToDatabase(String username ,String password, String cardNumber) {
+
+    public void editUserToDatabase(String memberID, String username, String password, String cardNumber) {
         /**
          * pass userName to find user and modify password and cardNUmber
          * **/
+        Database db = new Database(this);
+        db.updateProfile(memberID,username,password,cardNumber);
     }
 }

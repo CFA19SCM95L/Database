@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,6 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
      * */
 
     private final List<Order> orderList = new ArrayList<>();  // Main content is here
+    private Button editButton;
 
     private RecyclerView recyclerView; // Layout's recyclerview
 
@@ -28,8 +32,9 @@ public class ProfileActivity extends AppCompatActivity {
     public TextView cardNumber;
 
     public String username;
-    public String password;
+//    public String password;
     public String cardNum;
+    public String memberID;
 
     public boolean isUser;
 
@@ -38,22 +43,11 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Database db = new Database(this);
+
+
         userName = findViewById(R.id.username_profile);
         cardNumber = findViewById(R.id.cardNumber_profile);
-
-
-        if (getIntent().hasExtra("username")) {
-            username = getIntent().getStringExtra("username");
-            password = getIntent().getStringExtra("password");
-            userName.setText(username);
-            isUser = true;
-        }
-
-        if (getIntent().hasExtra("cardNumber")) {
-            cardNum = getIntent().getStringExtra("cardNumber");
-            cardNumber.setText(cardNum);
-        }
-
 
         recyclerView = findViewById(R.id.recyclerView_order);
 
@@ -62,10 +56,32 @@ public class ProfileActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //Make some data - not always needed - used to fill list
-        for (int i = 0; i < 20; i++) {
-            orderList.add(new Order());
+
+        if (getIntent().hasExtra("username")) {
+            username = getIntent().getStringExtra("username");
+//            password = getIntent().getStringExtra("password");
+            String[] data = db.getUserProfile(username);
+
+            userName.setText(data[1]);
+            cardNumber.setText(data[2]);
+            memberID = data[0];
+            ArrayList<String[]> orders= db.loadUsrOrder(memberID);
+
+            int i = 1;
+
+            for (String[] order : orders) {
+                orderList.add(new Order(i+"", order[1], Integer.parseInt(order[2]), Double.parseDouble(order[3])));
+                i++;
+            }
+
+            isUser = true;
+        } else {
+            editButton = findViewById(R.id.button3);
+            editButton.setClickable(false);
+            editButton.setVisibility(View.INVISIBLE);
+
         }
+
         mAdapter.notifyDataSetChanged();
 
         //
@@ -78,13 +94,33 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void goEdit(View view) {
         Intent intent = new Intent(this, EditActivity.class);
-        intent.putExtra("userName", username);
+        intent.putExtra("memberID", memberID);
+        intent.putExtra("username", username);
         startActivity(intent);
     }
 
     public void goProduct(View view) {
         Intent intent = new Intent(this, ProductListActivity.class);
+        intent.putExtra("memberID", memberID);
         intent.putExtra("username", username);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_profile, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.goAdmin:
+                Intent intent = new Intent(this, AdminActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

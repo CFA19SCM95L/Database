@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -27,22 +28,25 @@ public class SignupActivity extends AppCompatActivity {
     }
 
 
-    public void goProfile(View view){
+    public void goProfile(View view) {
         userName = usernameEdit.getText().toString();
         password = passwordEdit.getText().toString();
         cardNumber = cardNumberEdit.getText().toString();
 
-        createUserIntoDatabase(userName,password,cardNumber);
+        if (cardNumber.length() == 16 && userName.length() > 0 && password.length() > 0) {
+            createUserIntoDatabase(userName, password, cardNumber);
+            Intent intent = new Intent(this, ProfileActivity.class);
+            intent.putExtra("username", userName);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Wrong Input: Card number need to be 16 digits", Toast.LENGTH_SHORT).show();
+        }
 
-        Intent intent = new Intent(this, ProfileActivity.class);
-        intent.putExtra("username", userName);
-        startActivity(intent);
     }
 
-    public void createUserIntoDatabase(String userName, String password, String cardNumber){
-        /**
-         * pass userName,password, and cardNumber into userDatabase
-         * */
+    public void createUserIntoDatabase(String userName, String password, String cardNumber) {
+        Database db = new Database(this);
+        db.addUser(userName, password, cardNumber);
 
     }
 }

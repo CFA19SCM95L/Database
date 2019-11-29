@@ -7,6 +7,12 @@ public class Shipper implements Serializable {
     private String shipperName;
     private String trackingNumber;
 
+    public Shipper( String trackingNumber, String shipperID, String shipperName) {
+        this.shipperID = shipperID;
+        this.shipperName = shipperName;
+        this.trackingNumber = trackingNumber;
+    }
+
     public String getShipperID() {
         return shipperID;
     }

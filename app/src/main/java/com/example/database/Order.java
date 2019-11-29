@@ -9,6 +9,13 @@ public class Order implements Serializable {
     private int quantity;
     private double totalPrice;
 
+    public Order(String orderNumber, String productName, int quantity, double totalPrice) {
+        this.orderNumber = orderNumber;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+    }
+
     public String getOrderNumber() {
         return orderNumber;
     }

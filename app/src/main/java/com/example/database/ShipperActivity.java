@@ -23,6 +23,9 @@ public class ShipperActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shipper);
 
+        Database databaseHandler = new Database(this);
+        ArrayList<String[]> shippers = databaseHandler.loadShipper();
+
         recyclerView = findViewById(R.id.recycler_shipper);
 
         mAdapter = new ShipperAdapter(shipperList, this);
@@ -36,9 +39,10 @@ public class ShipperActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         //Make some data
-        for (int i = 0; i < 20; i++) {
-            shipperList.add(new Shipper());
+        for (String[] shipper : shippers) {
+            shipperList.add(new Shipper(shipper[0], shipper[1], shipper[2]));
         }
+
         mAdapter.notifyDataSetChanged();
         //
     }

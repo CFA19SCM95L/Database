@@ -37,9 +37,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataHolder> {
     @Override
     public void onBindViewHolder(@NonNull DataHolder holder, int position) {
         Data data = dataList.get(position);
-        holder.region.setText(data.getRegion());
-        holder.season.setText(data.getSeason());
-        holder.productID.setText(data.getProductID());
+        holder.productID.setText(data.getProductName());
         holder.quantity.setText(data.getQuantity()+"");
         holder.salesAmount.setText(data.getSalesAmount()+"");
 

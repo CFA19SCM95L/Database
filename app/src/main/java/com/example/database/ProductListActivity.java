@@ -31,8 +31,9 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
     private ProductAdapter mAdapter;
 
-    private String username;
     private boolean isUser;
+    public String memberID;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,15 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_product_list);
 
 
-        if (getIntent().hasExtra("username")) {
+        Database databaseHandler  = new Database(this);
+        ArrayList<String[]> products =databaseHandler.loadProduct();
+
+
+        if (getIntent().hasExtra("memberID")) {
+            memberID = getIntent().getStringExtra("memberID");
             username = getIntent().getStringExtra("username");
+
+
             isUser = true;
         }
 
@@ -53,9 +61,15 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //Make some data
-        for (int i = 0; i < 20; i++) {
-            productList.add(new Product());
+
+        for (String[] product : products) {
+            productList.add(new Product(product[0],product[1],product[2],Integer.parseInt(product[3]),Double.parseDouble(product[4])));
         }
+
+//
+//        for (int i = 0; i < 20; i++) {
+//            productList.add(new Product());
+//        }
         mAdapter.notifyDataSetChanged();
         //
 
@@ -76,15 +90,6 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
 
 
-            /**
-             * 1. pop dialog ask user how many they want
-             * 2. show price
-             * 3. add new order for user
-             * 4. update product quantity
-             * 5. add one data to sales data
-             * 6. go back to profile activity and show their orders
-             * */
-
             //1
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -98,28 +103,19 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                     String productName = m.getProductName();
                     int quantity =Integer.parseInt(et.getText().toString());
                     /* quantity > sale online table  return pop dialog ask for */
-                    /** take data from containOnline from database */
-//                    if (quantity < ) {
-//
-//                    }
-                    /***/
-                    double price = m.getPrice() * quantity;
-                    String region = "online";
-                    String season = "Winter";
-                    //2
-                    Toast.makeText(ProductListActivity.this, "You spend $" + price + " on "+ productName , Toast.LENGTH_SHORT).show();
+                    if (quantity <= m.getQuantity() ) {
+                        double price = m.getPrice() * quantity;
+                        //2
+                        Toast.makeText(ProductListActivity.this, "You spend $" + price + " on "+ productName , Toast.LENGTH_SHORT).show();
+                        userSelect( m.getProductID(), quantity);
 
+                        //6
+                        goProfile();
+                    } else {
+                        Toast.makeText(ProductListActivity.this, "Exceed total quantity" , Toast.LENGTH_SHORT).show();
 
-//                    //3
-//                    addNewOrderToDatabase(productName,quantity,price);
-//                    //4
-//                    updateProductToDatabase(quantity);
-//                    //5
-//                    addNewDataToDatabase(productName,quantity,price,region,season);
+                    }
 
-
-                    //6
-                    goProfile();
 
                 }
             });
@@ -135,6 +131,11 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
         }
 
+    }
+
+    public void  userSelect(String productID, int quantity) {
+        Database database = new Database(this);
+        database.userbuy(memberID, productID, quantity);
     }
 
     public void goProfile() {

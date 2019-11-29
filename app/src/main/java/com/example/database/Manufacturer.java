@@ -8,6 +8,12 @@ public class Manufacturer implements Serializable {
     private String companyName;
     private String product;
 
+    public Manufacturer(String manufacturerID, String companyName, String product) {
+        this.manufacturerID = manufacturerID;
+        this.companyName = companyName;
+        this.product = product;
+    }
+
     public String getManufacturerID() {
         return manufacturerID;
     }

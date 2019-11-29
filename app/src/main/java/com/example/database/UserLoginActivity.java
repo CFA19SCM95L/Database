@@ -48,9 +48,7 @@ public class UserLoginActivity extends AppCompatActivity {
     }
 
     public boolean isAuth(String userName, String password){
-        //pass userName and password into userDatabase
-        // if fit -> true
-        // else false
-        return true;
+        Database db = new Database(this);
+        return db.checkUser(userName,password);
     }
 }

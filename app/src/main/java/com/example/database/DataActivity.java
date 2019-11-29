@@ -24,6 +24,10 @@ public class DataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
 
+        Database databaseHandler  = new Database(this);
+        ArrayList<String[]> datas = databaseHandler.loadSalesData();
+
+
         recyclerView = findViewById(R.id.recycler_dataList);
 
         mAdapter = new DataAdapter(dataList, this);
@@ -32,9 +36,12 @@ public class DataActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //Make some data - not always needed - used to fill list
-        for (int i = 0; i < 20; i++) {
-            dataList.add(new Data());
+        for (String[] data : datas) {
+            dataList.add(new Data(data[0],Integer.parseInt(data[1]), Double.parseDouble(data[2])));
         }
+//        for (int i = 0; i < 20; i++) {
+//            dataList.add(new Data());
+//        }
         mAdapter.notifyDataSetChanged();
         //
 

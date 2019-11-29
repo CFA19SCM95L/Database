@@ -23,6 +23,9 @@ public class ManufacturerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manufacturer);
 
+        Database databaseHandler = new Database(this);
+        ArrayList<String[]> manus = databaseHandler.loadManu();
+
         recyclerView = findViewById(R.id.recycler_manufacturerList);
 
         mAdapter = new ManufacturerAdapter(manufacturerList, this);
@@ -31,9 +34,10 @@ public class ManufacturerActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //Make some data - not always needed - used to fill list
-        for (int i = 0; i < 20; i++) {
-            manufacturerList.add(new Manufacturer());
+        for (String[] manu : manus) {
+            manufacturerList.add(new Manufacturer(manu[0], manu[1], manu[2]));
         }
+
         mAdapter.notifyDataSetChanged();
         //
 
