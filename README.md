@@ -1,4 +1,2 @@
 # Database
-Feature:
-Dialog
-Database
+Include SQL script, ddl.sql, dml.sql
