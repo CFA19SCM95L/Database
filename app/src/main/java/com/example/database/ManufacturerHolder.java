@@ -11,10 +11,6 @@ public class ManufacturerHolder extends RecyclerView.ViewHolder {
     public TextView companyName;
     public TextView productName;
 
-
-
-
-
     public ManufacturerHolder(View view) {
         super(view);
         manufacturerID = view.findViewById(R.id.manufacturerID);

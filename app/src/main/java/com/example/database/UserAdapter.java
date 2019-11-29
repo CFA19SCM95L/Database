@@ -27,10 +27,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserHolder> {
         Log.d(TAG, "onCreateViewHolder: MAKING NEW");
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_user, parent, false);
-
-//        itemView.setOnClickListener(userListAct);
-//        itemView.setOnLongClickListener(userListAct);
-
         return new UserHolder(itemView);
     }
 
@@ -41,8 +37,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserHolder> {
         holder.userName.setText(user.getAccountNumber());
         holder.cardNumber.setText(user.getCardNumber());
         holder.password.setText(user.getPassword());
-
-
     }
 
     @Override

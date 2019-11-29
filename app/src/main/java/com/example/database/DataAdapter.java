@@ -27,10 +27,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataHolder> {
         Log.d(TAG, "onCreateViewHolder: MAKING NEW");
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_data, parent, false);
-
-//        itemView.setOnClickListener(dataActivity);
-//        itemView.setOnLongClickListener(dataActivity);
-
         return new DataHolder(itemView);
     }
 
@@ -40,7 +36,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataHolder> {
         holder.productID.setText(data.getProductName());
         holder.quantity.setText(data.getQuantity()+"");
         holder.salesAmount.setText(data.getSalesAmount()+"");
-
     }
 
     @Override

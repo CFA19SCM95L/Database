@@ -12,11 +12,11 @@ import java.util.List;
 
 public class ManufacturerActivity extends AppCompatActivity {
 
-    private final List<Manufacturer> manufacturerList = new ArrayList<>();  // Main content is here
+    private final List<Manufacturer> manufacturerList = new ArrayList<>();
 
-    private RecyclerView recyclerView; // Layout's recyclerview
+    private RecyclerView recyclerView;
 
-    private ManufacturerAdapter mAdapter; // Data to recyclerview adapter
+    private ManufacturerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +33,11 @@ public class ManufacturerActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //Make some data - not always needed - used to fill list
         for (String[] manu : manus) {
             manufacturerList.add(new Manufacturer(manu[0], manu[1], manu[2]));
         }
 
         mAdapter.notifyDataSetChanged();
-        //
-
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 new LinearLayoutManager(this).getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);

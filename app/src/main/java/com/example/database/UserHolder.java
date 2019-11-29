@@ -12,9 +12,6 @@ public class UserHolder extends RecyclerView.ViewHolder {
     public TextView cardNumber;
     public TextView password;
 
-
-
-
     public UserHolder(View view) {
         super(view);
         userID = view.findViewById(R.id.userID_userList);

@@ -33,7 +33,6 @@ public class EditActivity extends AppCompatActivity {
             username = getIntent().getStringExtra("username");
             userName.setText(username);
         }
-
     }
 
     public void goProfile(View view) {
@@ -51,9 +50,6 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public void editUserToDatabase(String memberID, String username, String password, String cardNumber) {
-        /**
-         * pass userName to find user and modify password and cardNUmber
-         * **/
         Database db = new Database(this);
         db.updateProfile(memberID,username,password,cardNumber);
     }

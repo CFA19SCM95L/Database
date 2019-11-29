@@ -19,27 +19,20 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-
         databaseHandler  = new Database(this);
         databaseHandler.countAll();
         databaseHandler.loadUser();
         databaseHandler.loadProduct();
         databaseHandler.loadOrder();
-
-
-
-
     }
 
     public void goUser(View view) {
         Intent intent = new Intent(this, UserLoginActivity.class);
-//        intent.putExtra("key", "value");
         startActivity(intent);
     }
 
     public void goAdmin(View view) {
         Intent intent = new Intent(this, AdminActivity.class);
-//        intent.putExtra("key", "value");
         startActivity(intent);
     }
 }

@@ -33,13 +33,11 @@ public class OrderListActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //Make some data
         for (String[] order : orders) {
             orderList.add(new Order(order[0], order[1],  Integer.parseInt(order[2]), Double.parseDouble(order[3])));
         }
 
         mAdapter.notifyDataSetChanged();
-
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 new LinearLayoutManager(this).getOrientation());

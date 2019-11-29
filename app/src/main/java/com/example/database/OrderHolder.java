@@ -13,10 +13,6 @@ public class OrderHolder extends RecyclerView.ViewHolder {
     public TextView productName;
     public TextView price;
 
-
-
-
-
     public OrderHolder(View view) {
         super(view);
         orderNumber = view.findViewById(R.id.orderID_orderList);

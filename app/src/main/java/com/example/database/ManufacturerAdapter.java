@@ -28,9 +28,6 @@ public class ManufacturerAdapter extends RecyclerView.Adapter<ManufacturerHolder
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_manufacturer, parent, false);
 
-//        itemView.setOnClickListener(mainAct);
-//        itemView.setOnLongClickListener(mainAct);
-
         return new ManufacturerHolder(itemView);
     }
 
@@ -40,7 +37,6 @@ public class ManufacturerAdapter extends RecyclerView.Adapter<ManufacturerHolder
         holder.manufacturerID.setText(manufacturer.getManufacturerID());
         holder.companyName.setText(manufacturer.getCompanyName());
         holder.productName.setText(manufacturer.getProduct());
-
     }
 
     @Override

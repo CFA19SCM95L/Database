@@ -27,10 +27,6 @@ public class ShipperAdapter  extends RecyclerView.Adapter<ShipperHolder> {
         Log.d(TAG, "onCreateViewHolder: MAKING NEW");
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_shipper, parent, false);
-
-//        itemView.setOnClickListener(shipperAct);
-//        itemView.setOnLongClickListener(shipperAct);
-
         return new ShipperHolder(itemView);
     }
 
@@ -40,9 +36,6 @@ public class ShipperAdapter  extends RecyclerView.Adapter<ShipperHolder> {
         holder.shipperID.setText(shipper.getShipperID());
         holder.shipperName.setText(shipper.getShipperName());
         holder.trackingNumber.setText(shipper.getTrackingNumber());
-
-
-
     }
 
     @Override

@@ -13,11 +13,11 @@ import java.util.List;
 public class DataActivity extends AppCompatActivity {
 
 
-    private final List<Data> dataList = new ArrayList<>();  // Main content is here
+    private final List<Data> dataList = new ArrayList<>();
 
-    private RecyclerView recyclerView; // Layout's recyclerview
+    private RecyclerView recyclerView;
 
-    private DataAdapter mAdapter; // Data to recyclerview adapter
+    private DataAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +35,11 @@ public class DataActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //Make some data - not always needed - used to fill list
         for (String[] data : datas) {
             dataList.add(new Data(data[0],Integer.parseInt(data[1]), Double.parseDouble(data[2])));
         }
-//        for (int i = 0; i < 20; i++) {
-//            dataList.add(new Data());
-//        }
+
         mAdapter.notifyDataSetChanged();
-        //
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 new LinearLayoutManager(this).getOrientation());

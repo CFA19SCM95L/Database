@@ -7,16 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class DataHolder extends RecyclerView.ViewHolder {
 
-
-
     public TextView productID;
     public TextView quantity;
     public TextView salesAmount;
-
-
-
-
-
 
     public DataHolder(View view) {
         super(view);

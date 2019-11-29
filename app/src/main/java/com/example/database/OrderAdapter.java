@@ -33,10 +33,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderHolder> {
         Log.d(TAG, "onCreateViewHolder: MAKING NEW");
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_order, parent, false);
-
-//        itemView.setOnClickListener(orderAct);
-//        itemView.setOnLongClickListener(orderAct);
-
         return new OrderHolder(itemView);
     }
 

@@ -38,12 +38,9 @@ public class ShipperActivity extends AppCompatActivity {
                 new LinearLayoutManager(this).getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        //Make some data
         for (String[] shipper : shippers) {
             shipperList.add(new Shipper(shipper[0], shipper[1], shipper[2]));
         }
-
         mAdapter.notifyDataSetChanged();
-        //
     }
 }

@@ -21,9 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListActivity extends AppCompatActivity implements View.OnClickListener {
-    /**
-     * Three table: product, order, salesData
-     */
+
 
     private final List<Product> productList = new ArrayList<>();
 
@@ -40,7 +38,6 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
 
-
         Database databaseHandler  = new Database(this);
         ArrayList<String[]> products =databaseHandler.loadProduct();
 
@@ -48,31 +45,19 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         if (getIntent().hasExtra("memberID")) {
             memberID = getIntent().getStringExtra("memberID");
             username = getIntent().getStringExtra("username");
-
-
             isUser = true;
         }
 
         recyclerView = findViewById(R.id.recyclerView_productList);
-
         mAdapter = new ProductAdapter(productList, this);
-
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        //Make some data
 
         for (String[] product : products) {
             productList.add(new Product(product[0],product[1],product[2],Integer.parseInt(product[3]),Double.parseDouble(product[4])));
         }
 
-//
-//        for (int i = 0; i < 20; i++) {
-//            productList.add(new Product());
-//        }
         mAdapter.notifyDataSetChanged();
-        //
-
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 new LinearLayoutManager(this).getOrientation());
@@ -80,17 +65,12 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
-    public void onClick(View v) {  // click listener called by ViewHolder clicks
-
+    public void onClick(View v) {
         int pos = recyclerView.getChildLayoutPosition(v);
         final Product m = productList.get(pos);
 
-
         if (isUser) {
 
-
-
-            //1
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             final EditText et = new EditText(this);
@@ -102,20 +82,15 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                 public void onClick(DialogInterface dialog, int id) {
                     String productName = m.getProductName();
                     int quantity =Integer.parseInt(et.getText().toString());
-                    /* quantity > sale online table  return pop dialog ask for */
                     if (quantity <= m.getQuantity() ) {
                         double price = m.getPrice() * quantity;
-                        //2
                         Toast.makeText(ProductListActivity.this, "You spend $" + price + " on "+ productName , Toast.LENGTH_SHORT).show();
                         userSelect( m.getProductID(), quantity);
-
-                        //6
                         goProfile();
                     } else {
                         Toast.makeText(ProductListActivity.this, "Exceed total quantity" , Toast.LENGTH_SHORT).show();
 
                     }
-
 
                 }
             });
@@ -143,6 +118,5 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         intent.putExtra("username", username);
         startActivity(intent);
     }
-
 
 }

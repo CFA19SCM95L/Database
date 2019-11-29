@@ -24,12 +24,9 @@ public class UserLoginActivity extends AppCompatActivity {
 
     }
 
-
     public void goProfile(View view){
-
         usernamePass = username.getText().toString();
         passwordPass = password.getText().toString();
-
         if(isAuth(usernamePass,passwordPass)) {
             Intent intent = new Intent(this, ProfileActivity.class);
             intent.putExtra("username", usernamePass);
@@ -38,7 +35,6 @@ public class UserLoginActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this,"Wrong credential", Toast.LENGTH_SHORT).show();
         }
-
     }
 
 

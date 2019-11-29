@@ -7,13 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ShipperHolder extends RecyclerView.ViewHolder {
 
-
     public TextView shipperID;
     public TextView shipperName;
     public TextView trackingNumber;
-
-
-
 
     public ShipperHolder(View view) {
         super(view);

@@ -17,25 +17,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
-    /**
-     * Two table: User, Order
-     * */
 
-    private final List<Order> orderList = new ArrayList<>();  // Main content is here
+
+    private final List<Order> orderList = new ArrayList<>();
     private Button editButton;
-
-    private RecyclerView recyclerView; // Layout's recyclerview
-
-    private OrderAdapter mAdapter; // Data to recyclerview adapter
+    private RecyclerView recyclerView;
+    private OrderAdapter mAdapter;
 
     public TextView userName;
     public TextView cardNumber;
-
     public String username;
-//    public String password;
     public String cardNum;
     public String memberID;
-
     public boolean isUser;
 
 
@@ -44,7 +37,6 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Database db = new Database(this);
-
 
         userName = findViewById(R.id.username_profile);
         cardNumber = findViewById(R.id.cardNumber_profile);
@@ -59,7 +51,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (getIntent().hasExtra("username")) {
             username = getIntent().getStringExtra("username");
-//            password = getIntent().getStringExtra("password");
             String[] data = db.getUserProfile(username);
 
             userName.setText(data[1]);
@@ -68,12 +59,10 @@ public class ProfileActivity extends AppCompatActivity {
             ArrayList<String[]> orders= db.loadUsrOrder(memberID);
 
             int i = 1;
-
             for (String[] order : orders) {
                 orderList.add(new Order(i+"", order[1], Integer.parseInt(order[2]), Double.parseDouble(order[3])));
                 i++;
             }
-
             isUser = true;
         } else {
             editButton = findViewById(R.id.button3);
@@ -83,9 +72,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         mAdapter.notifyDataSetChanged();
-
-        //
-
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 new LinearLayoutManager(this).getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);

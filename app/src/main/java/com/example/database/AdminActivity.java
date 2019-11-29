@@ -19,32 +19,26 @@ public class AdminActivity extends AppCompatActivity {
 
     public void goProductList(View view) {
         Intent intent = new Intent(this, ProductListActivity.class);
-//        intent.putExtra("key", "value");
         startActivity(intent);
     }
     public void goOrderList(View view) {
         Intent intent = new Intent(this, OrderListActivity.class);
-//        intent.putExtra("key", "value");
         startActivity(intent);
     }
     public void goUserList(View view) {
         Intent intent = new Intent(this, UserlistActivity.class);
-//        intent.putExtra("key", "value");
         startActivity(intent);
     }
     public void goShipperList(View view) {
         Intent intent = new Intent(this, ShipperActivity.class);
-//        intent.putExtra("key", "value");
         startActivity(intent);
     }
     public void goDataList(View view) {
         Intent intent = new Intent(this, DataActivity.class);
-//        intent.putExtra("key", "value");
         startActivity(intent);
     }
     public void goManufacturerList(View view) {
         Intent intent = new Intent(this, ManufacturerActivity.class);
-//        intent.putExtra("key", "value");
         startActivity(intent);
     }
 
