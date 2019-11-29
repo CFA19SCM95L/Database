@@ -38,7 +38,6 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-
     protected void countAll() {
         Cursor cursor = database.rawQuery("select * from Products", null);
         Log.d(TAG, "countAll: Products " + cursor.getCount());
@@ -67,23 +66,6 @@ public class Database extends SQLiteOpenHelper {
 
 
     }
-
-    //    public ArrayList<String[]> loadUser(){
-//        ArrayList<String[]> stocks = new ArrayList<>();
-//        Cursor cursor = database.query("customer", new String[]{SYMBOL, COMPANY}, null, null, null , null, null);
-//        if (cursor !=null){
-//            cursor.moveToFirst();
-//
-//            for (int i =0; i<cursor.getCount(); i++){
-//                String symbol = cursor.getString(0);
-//                String company = cursor.getString(1);
-//                stocks.add(new String[] {symbol, company});
-//                cursor.moveToNext();
-//            }
-//            cursor.close();
-//        }
-//        return stocks;
-//    }
 
     protected ArrayList<String[]> loadUser() {
         ArrayList<String[]> users = new ArrayList<>();
@@ -273,32 +255,6 @@ public class Database extends SQLiteOpenHelper {
         }
         return order;
     }
-
-
-//    protected void loadUsrOrder(String memberID) {
-//        Log.d(TAG, "loadUserOrder: ***");
-//        Cursor cursor = database.rawQuery("select member_id, order_id, product_name, quantity, (price*quantity) as total_amount from order_description natural join sales_online natural join products natural join contain_online where member_id = " + memberID, null);
-//
-//        if (cursor != null) {
-//            cursor.moveToFirst();
-//
-//            for (int i = 0; i < cursor.getCount(); i++) {
-//
-//                String member_id = cursor.getString(0);
-//                String order_id = cursor.getString(1);
-//                String product_name = cursor.getString(2);
-//                String quantity = cursor.getString(3);
-//                String total_amount = cursor.getString(4);
-//
-//
-//                Log.d(TAG, "loadUserOrder: " + member_id + " " + order_id + " " + product_name + " " + quantity + " " + total_amount);
-//
-//                cursor.moveToNext();
-//            }
-//            cursor.close();
-//        }
-//    }
-
 
     protected String[] getUserProfile(String userID) {
         String sql = "select member_id, account_number, card_number from customer where account_number= " + "'" + userID + "'";
