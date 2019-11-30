@@ -37,6 +37,41 @@ update contain_online set inventory=inventory-3 where product_id='Product302'
 
 
 
+-- Delete user order
+	-- find product_id and order quantity (order_id (java code))
+	select product_id, quantity from sales_online where order_id=1;
+	-- update contain_online inventory (product_id and quantity (java code))
+	update contain_online set inventory=inventory+1 where product_id='Product101'
+	-- delete sales_online with user order
+	delete from sales_online where order_id=1;
+	-- delete order_description with user order 
+	delete from order_description where order_id=1;
+
+
+
+
+
+-- Delete user profile
+	-- find user order list 
+	select order_id from order_description where member_id=1;
+	-- for every order (order_id = 1, 7, 13 (java code)){
+		-- find product_id and order quantity (order_id (java code))
+		select product_id, quantity from sales_online where order_id=1;
+		-- update contain_online inventory (product_id and quantity (java code))
+		update contain_online set inventory=inventory+1 where product_id='Product101'
+		-- delete sales_online with user order
+		delete from sales_online where order_id=1;
+		-- delete order_description with user order 
+		delete from order_description where order_id=1;
+	}
+	-- delete delivery (not in application)
+	delete from delivery where member_id=1;
+-- delete user
+delete from customer where member_i=1;
+
+
+
+
 
 
 
