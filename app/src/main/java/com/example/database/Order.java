@@ -8,6 +8,7 @@ public class Order implements Serializable {
     private String productName;
     private int quantity;
     private double totalPrice;
+    public String realOrderNumber;
 
     public Order(String orderNumber, String productName, int quantity, double totalPrice) {
         this.orderNumber = orderNumber;

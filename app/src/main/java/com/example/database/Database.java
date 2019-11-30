@@ -329,6 +329,58 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
+    protected void deleteUserOrder(String orderID) {
+        String sql = "select product_id, quantity from sales_online where order_id=" + orderID;
+        Cursor cursor = database.rawQuery(sql, null);
+        cursor.moveToFirst();
+        String productID = cursor.getString(0);
+        int quantity = cursor.getInt(1);
+        sql = "update contain_online set inventory=inventory+" + quantity + " where product_id='" + productID + "'";
+        database.execSQL(sql);
+        sql = "delete from sales_online where order_id=" +orderID;
+        database.execSQL(sql);
+        sql = "delete from order_description where order_id=" + orderID;
+        database.execSQL(sql);
+
+    }
+
+    protected void deleteUser(String userID) {
+        String sql = "select order_id from order_description where member_id=" + userID;
+        Cursor cursor = database.rawQuery(sql, null);
+        ArrayList<String> orders = new ArrayList<>();
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            for (int i = 0; i < cursor.getCount(); i++) {
+
+                String order_ID = cursor.getString(0);
+                orders.add(order_ID);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        for (String orderID : orders) {
+            String sql1 = "select product_id, quantity from sales_online where order_id=" + orderID;
+            Cursor cursor1 = database.rawQuery(sql1, null);
+            Log.d(TAG, "deleteUser: " + cursor1.getCount() + " " );
+            cursor1.moveToFirst();
+            Log.d(TAG, "deleteUser: " + cursor1.getCount() + " " );
+
+            String productID = cursor1.getString(0);
+            int quantity = cursor1.getInt(1);
+            sql = "update contain_online set inventory=inventory+" + quantity + " where product_id='" + productID + "'";
+            database.execSQL(sql);
+            sql = "delete from sales_online where order_id=" +orderID;
+            database.execSQL(sql);
+            sql = "delete from order_description where order_id=" + orderID;
+            database.execSQL(sql);
+        }
+        database.execSQL("delete from delivery where member_id=" + userID);
+        database.execSQL("delete from customer where member_id=" + userID);
+
+    }
+
 
     private void createTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE Products(Product_ID varchar(10),Product_Name varchar(20),Category varchar(20),PRIMARY KEY (Product_ID))");

@@ -1,16 +1,20 @@
 package com.example.database;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserlistActivity extends AppCompatActivity {
+public class UserlistActivity extends AppCompatActivity implements View.OnLongClickListener {
 
 
     private final List<User> userList = new ArrayList<>();
@@ -39,6 +43,46 @@ public class UserlistActivity extends AppCompatActivity {
 
         mAdapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public boolean onLongClick(View v) {  // long click listener called by ViewHolder long clicks
+        int pos = recyclerView.getChildLayoutPosition(v);
+        final User user = userList.get(pos);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                deleteUser(user.getUserID());
+                makeToast(0);
+                userList.remove(user);
+                mAdapter.notifyDataSetChanged();
+
+            }
+        });
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                makeToast(1);
+            }
+        });
+        builder.setMessage("Do you want to delete" + user.getUserID());
+        builder.setTitle("Delete user");
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        return false;
+    }
+
+    private void makeToast(int i) {
+        if (i == 1) {
+            Toast.makeText(this, "You change your mind", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Successfully delete user", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void deleteUser(String userID) {
+        Database db = new Database(this);
+        db.deleteUser(userID);
     }
 
 }

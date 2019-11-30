@@ -27,6 +27,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserHolder> {
         Log.d(TAG, "onCreateViewHolder: MAKING NEW");
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_user, parent, false);
+        itemView.setOnLongClickListener(userListAct);
+
         return new UserHolder(itemView);
     }
 
