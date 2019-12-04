@@ -15,8 +15,8 @@ select product_name, sum(quantity) as total_quantity, sum(quantity)*price as sal
 -- Manufacturer List:
 select manufacturer_id, company, product_name from manufacturer natural join made natural join products;
 -- Get user ID:
-select count(*) from customer;
--- Add new user to database:
+select * from customer;
+-- Add new user to database: (pass last userID + 1, accountnum, pwd, cardNum)
 insert into customer values ();
 -- Update user information:
 update customer
