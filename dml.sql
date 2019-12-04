@@ -25,8 +25,8 @@ where member_id=1;
 -- Get user profile:
 select member_id, account_number, card_number from customer where account_number='user1' and password='password1';
 -- Get order ID:
-select count(*) from order_description;
--- Add new order to database:(order_id from above, pass member_id into product list, 'Credit' default value)
+select order_id from order_description;
+-- Add new order to database:(last order ID + 1 from above, pass member_id into product list, 'Credit' default value)
 insert into order_description values(19, 1, 'Credit');
 -- Get warehouse ID:(product_id='Product302' from user)
 select warehouse_id, product_id from contain_online where product_id='Product302';
