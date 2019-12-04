@@ -192,6 +192,7 @@ insert into customer values (3, 'user3', 'password3', '4567812123345678', 'Frequ
 insert into customer values (4, 'user4', 'password4', '2345678123145678', 'Frequent');
 insert into customer values (5, 'user5', 'password5', '7812345612345678', 'Frequent');
 insert into customer values (6, 'user6', 'password6', '1238145672834567', 'Frequent');
+insert into customer values (7, 'guest', 'guest', '****************', 'Infrequent')
 
 
 
