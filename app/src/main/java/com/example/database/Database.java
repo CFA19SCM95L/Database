@@ -216,7 +216,9 @@ public class Database extends SQLiteOpenHelper {
 
         Cursor cursor = database.rawQuery("select * from customer", null);
         Log.d(TAG, "addUser: *** count member: " + cursor.getCount());
-        String id = cursor.getCount() + 1 + "";
+        cursor.moveToLast();
+
+        String id = cursor.getInt(0) + 1 + "";
 
         ContentValues values = new ContentValues();
         values.put("Member_ID", id);
