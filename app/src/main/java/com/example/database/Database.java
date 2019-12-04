@@ -203,15 +203,13 @@ public class Database extends SQLiteOpenHelper {
                 String product_name = cursor.getString(2);
 
 
-                manu.add(new String[] {manufacturer_id, company, product_name});
+                manu.add(new String[]{manufacturer_id, company, product_name});
                 cursor.moveToNext();
             }
             cursor.close();
         }
         return manu;
     }
-
-
 
 
     public void addUser(String username, String password, String card) {
@@ -247,7 +245,7 @@ public class Database extends SQLiteOpenHelper {
                 String quantity = cursor.getString(3);
                 String total_amount = cursor.getString(4);
 
-                order.add(new String[] {order_id, product_name, quantity, total_amount});
+                order.add(new String[]{order_id, product_name, quantity, total_amount});
 
                 cursor.moveToNext();
             }
@@ -297,7 +295,10 @@ public class Database extends SQLiteOpenHelper {
     public void userbuy(String memberID, String productID, int quantity) {
         //ger orderID
         Cursor cursor = database.rawQuery("select * from order_description", null);
-        String orderID = cursor.getCount() + 1 + "";
+        cursor.moveToLast();
+
+
+        String orderID = cursor.getInt(0) + 1 + "";
         //sql
         String sql = "insert into order_description values(" + orderID + "," + memberID + ", 'Credit')";
         database.execSQL(sql);
@@ -320,7 +321,7 @@ public class Database extends SQLiteOpenHelper {
 
     public boolean checkUser(String username, String password) {
         String sql = "select * from customer where Account_Number = '" + username + "' and Password = '" + password + "'";
-        Cursor cursor= database.rawQuery(sql, null);
+        Cursor cursor = database.rawQuery(sql, null);
         int res = cursor.getCount();
         if (res == 0) {
             return false;
@@ -337,7 +338,7 @@ public class Database extends SQLiteOpenHelper {
         int quantity = cursor.getInt(1);
         sql = "update contain_online set inventory=inventory+" + quantity + " where product_id='" + productID + "'";
         database.execSQL(sql);
-        sql = "delete from sales_online where order_id=" +orderID;
+        sql = "delete from sales_online where order_id=" + orderID;
         database.execSQL(sql);
         sql = "delete from order_description where order_id=" + orderID;
         database.execSQL(sql);
@@ -363,15 +364,15 @@ public class Database extends SQLiteOpenHelper {
         for (String orderID : orders) {
             String sql1 = "select product_id, quantity from sales_online where order_id=" + orderID;
             Cursor cursor1 = database.rawQuery(sql1, null);
-            Log.d(TAG, "deleteUser: " + cursor1.getCount() + " " );
+            Log.d(TAG, "deleteUser: " + cursor1.getCount() + " ");
             cursor1.moveToFirst();
-            Log.d(TAG, "deleteUser: " + cursor1.getCount() + " " );
+            Log.d(TAG, "deleteUser: " + cursor1.getCount() + " ");
 
             String productID = cursor1.getString(0);
             int quantity = cursor1.getInt(1);
             sql = "update contain_online set inventory=inventory+" + quantity + " where product_id='" + productID + "'";
             database.execSQL(sql);
-            sql = "delete from sales_online where order_id=" +orderID;
+            sql = "delete from sales_online where order_id=" + orderID;
             database.execSQL(sql);
             sql = "delete from order_description where order_id=" + orderID;
             database.execSQL(sql);
@@ -459,6 +460,8 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("insert into customer values (4, 'user4', 'password4', '2345678123145678', 'Frequent') ");
         db.execSQL("insert into customer values (5, 'user5', 'password5', '7812345612345678', 'Frequent') ");
         db.execSQL("insert into customer values (6, 'user6', 'password6', '1238145672834567', 'Frequent') ");
+        db.execSQL("insert into customer values (7, 'guest', 'guest', '****************', 'Infrequent') ");
+
 
         db.execSQL("insert into Contain_Online values ('W00000001', 'Product101', 2000, 1000) ");
         db.execSQL("insert into Contain_Online values ('W00000002', 'Product102', 3000, 2200) ");

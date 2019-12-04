@@ -29,7 +29,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
     private ProductAdapter mAdapter;
 
-    private boolean isUser;
+    private boolean isUser ;
     public String memberID;
     private String username;
 
@@ -45,6 +45,9 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         if (getIntent().hasExtra("memberID")) {
             memberID = getIntent().getStringExtra("memberID");
             username = getIntent().getStringExtra("username");
+            if (username.equals("guest")) {
+                askCardNum();
+            }
             isUser = true;
         }
 
@@ -62,12 +65,14 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 new LinearLayoutManager(this).getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
+
     }
 
     @Override
     public void onClick(View v) {
         int pos = recyclerView.getChildLayoutPosition(v);
         final Product m = productList.get(pos);
+
 
         if (isUser) {
 
@@ -80,6 +85,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
+
                     String productName = m.getProductName();
                     int quantity =Integer.parseInt(et.getText().toString());
                     if (quantity <= m.getQuantity() ) {
@@ -118,5 +124,23 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         intent.putExtra("username", username);
         startActivity(intent);
     }
+
+    public void askCardNum() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final EditText et = new EditText(this);
+        et.setInputType(InputType.TYPE_CLASS_TEXT);
+        et.setGravity(Gravity.CENTER_HORIZONTAL);
+        builder.setView(et);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                String userInput = et.getText().toString();
+            }
+        });
+
+        builder.setMessage("Please enter your card number:");
+        builder.setTitle("Card Number");
+        AlertDialog dialog = builder.create();
+        dialog.show();    }
 
 }

@@ -43,6 +43,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnLongCli
 
         userName = findViewById(R.id.username_profile);
         cardNumber = findViewById(R.id.cardNumber_profile);
+        editButton = findViewById(R.id.button3);
 
         recyclerView = findViewById(R.id.recyclerView_order);
 
@@ -63,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnLongCli
 
             int i = 1;
             for (String[] order : orders) {
-                Order order1 = new Order(i+"", order[1], Integer.parseInt(order[2]), Double.parseDouble(order[3]));
+                Order order1 = new Order(i + "", order[1], Integer.parseInt(order[2]), Double.parseDouble(order[3]));
                 order1.realOrderNumber = order[0];
                 orderList.add(order1);
                 i++;
@@ -71,17 +72,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnLongCli
 
             }
             isUser = true;
-        } else {
-            editButton = findViewById(R.id.button3);
-            editButton.setClickable(false);
-            editButton.setVisibility(View.INVISIBLE);
-
         }
 
         mAdapter.notifyDataSetChanged();
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 new LinearLayoutManager(this).getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
+        if (username.equals("guest")) {
+            editButton.setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -94,8 +93,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnLongCli
 
     public void goProduct(View view) {
         Intent intent = new Intent(this, ProductListActivity.class);
-        intent.putExtra("memberID", memberID);
-        intent.putExtra("username", username);
+        if (!memberID.isEmpty()) {
+            intent.putExtra("memberID", memberID);
+            intent.putExtra("username", username);
+        }
         startActivity(intent);
     }
 

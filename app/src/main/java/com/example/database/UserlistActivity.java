@@ -26,7 +26,7 @@ public class UserlistActivity extends AppCompatActivity implements View.OnLongCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userlist);
 
-        Database databaseHandler  = new Database(this);
+        Database databaseHandler = new Database(this);
         ArrayList<String[]> users = databaseHandler.loadUser();
 
         recyclerView = findViewById(R.id.recycler_userlist);
@@ -53,8 +53,14 @@ public class UserlistActivity extends AppCompatActivity implements View.OnLongCl
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                if (user.getAccountNumber().equals("guest")) {
+                    makeToast(3);
+                    return;
+                }
+
+
                 deleteUser(user.getUserID());
-                makeToast(0);
+                makeToast(2);
                 userList.remove(user);
                 mAdapter.notifyDataSetChanged();
 
@@ -75,8 +81,10 @@ public class UserlistActivity extends AppCompatActivity implements View.OnLongCl
     private void makeToast(int i) {
         if (i == 1) {
             Toast.makeText(this, "You change your mind", Toast.LENGTH_LONG).show();
-        } else {
+        } else if (i == 2) {
             Toast.makeText(this, "Successfully delete user", Toast.LENGTH_LONG).show();
+        } else if (i == 3) {
+            Toast.makeText(this, "Cannot delete guest account", Toast.LENGTH_LONG).show();
         }
     }
 

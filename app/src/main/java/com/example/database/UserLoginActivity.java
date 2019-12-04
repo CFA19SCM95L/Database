@@ -47,4 +47,12 @@ public class UserLoginActivity extends AppCompatActivity {
         Database db = new Database(this);
         return db.checkUser(userName,password);
     }
+
+    public void guestLogin(View view) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra("username", "guest");
+        intent.putExtra("password", "guest");
+        startActivity(intent);
+
+    }
 }
